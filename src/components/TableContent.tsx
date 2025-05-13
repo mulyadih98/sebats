@@ -20,6 +20,9 @@ export default function TableContent() {
               Qty
             </th>
             <th scope="col" className="px-6 py-3">
+              Total
+            </th>
+            <th scope="col" className="px-6 py-3">
               Action
             </th>
           </tr>
@@ -36,6 +39,7 @@ export default function TableContent() {
             <td className="px-6 py-4">KOD123</td>
             <td className="px-6 py-4">3500</td>
             <td className="px-6 py-4">1</td>
+            <td className="px-6 py-4">3500</td>
             <td className="px-6 py-4 flex justify-evenly max-w-3xs">
               <button className="p-4 bg-red-600 text-white rounded-lg">
                 Delete

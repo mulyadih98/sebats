@@ -3,12 +3,15 @@ import { ProductsEntitie } from '../entities/product-entitie';
 
 type SerchingProps = {
   data: ProductsEntitie[];
+  onSelectItem: (args: ProductsEntitie) => void;
 };
 
-const SearchingArea: React.FC<SerchingProps> = ({ data }) => {
+const SearchingArea: React.FC<SerchingProps> = ({ data, onSelectItem }) => {
   const [productList, setProductList] = useState<ProductsEntitie[]>([]);
+  const [keyWord, setKeyWord] = useState<string>('');
   // handle search
   const handlerOnChange = (args: string) => {
+    setKeyWord(args);
     if (args != '') {
       const result = data.filter((item) => {
         const namaLower = item.nama?.toLowerCase() ?? '';
@@ -22,11 +25,6 @@ const SearchingArea: React.FC<SerchingProps> = ({ data }) => {
     } else {
       setProductList([]);
     }
-  };
-
-  // hanlde select item
-  const handlerOnClick = (item: ProductsEntitie) => {
-    console.log(item);
   };
 
   return (
@@ -47,10 +45,11 @@ const SearchingArea: React.FC<SerchingProps> = ({ data }) => {
           />
         </svg>
         <input
-          className="h-full outline-none text-xl"
+          className="h-full outline-none text-xl w-full"
           type="text"
           placeholder="Type Here"
           autoFocus
+          value={keyWord}
           onChange={(e) => handlerOnChange(e.target.value)}
         />
       </div>
@@ -59,7 +58,11 @@ const SearchingArea: React.FC<SerchingProps> = ({ data }) => {
           <p
             className="hover:bg-gray-400 p-2"
             key={item.id}
-            onClick={() => handlerOnClick(item)}
+            onClick={() => {
+              setKeyWord('');
+              setProductList([]);
+              onSelectItem(item);
+            }}
           >
             {item.nama}
           </p>

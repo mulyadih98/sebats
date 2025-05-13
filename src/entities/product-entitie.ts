@@ -4,8 +4,9 @@ export type ProductsEntitie = {
   kode: string;
   kategori: string;
   stok: number;
-  'harga beli 1': number;
-  'harga beli 2': number;
-  'harga beli 3': number;
+  harga_beli: number;
+  harga_jual1: number;
+  harga_jual2: number;
+  harga_jual3: number;
   suplier: number;
 };
